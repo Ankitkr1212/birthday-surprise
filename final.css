@@ -1,0 +1,175 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(
+            135deg,
+            #EAD5D8,
+            #D6B5BE,
+            #B88C9A
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    padding: 30px;
+}
+
+.final {
+    width: 100%;
+    max-width: 950px;
+    min-height: 600px;
+
+    padding: 50px 65px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+            160deg,
+            #FFF8F5,
+            #F5E8E8,
+            #EEDBDD
+    );
+
+    color: #76545C;
+
+    box-shadow: 0 15px 40px
+    rgba(75, 40, 50, 0.20);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    animation: slideFromLeft 1.4s
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.birthday-message {
+    text-align: center;
+}
+
+.birthday-message h1 {
+    font-size: 36px;
+    color: #9B596D;
+    margin-bottom: 25px;
+}
+
+.birthday-message h2 {
+    font-size: 24px;
+    color: #A66B7D;
+    margin-bottom: 22px;
+}
+
+.birthday-message p {
+    font-size: 19px;
+    line-height: 1.9;
+    margin-bottom: 15px;
+}
+
+.birthday-message h3 {
+    font-size: 21px;
+    margin-top: 25px;
+    color: #956070;
+}
+
+/* Separate P.S. section */
+
+.ps-note {
+    margin-top: 45px;
+
+    padding: 22px 28px;
+
+    background: linear-gradient(
+            135deg,
+            #F8E6E9,
+            #EBD1D8
+    );
+
+    border-left: 5px solid #B88C9A;
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px
+    rgba(75, 40, 50, 0.10);
+
+    text-align: left;
+}
+
+.ps-note h2 {
+    color: #895768;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.ps-note p {
+    color: #76545C;
+    font-size: 17px;
+    line-height: 1.8;
+    font-style: italic;
+}
+.final {
+    animation: slideFromLeft 1.4s cubic-bezier(
+            0.22, 1, 0.36, 1
+    ) forwards;
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100vw);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.next-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #B88C9A;
+    color: #FFF8F5;
+
+    border: 2px solid #FFF8F5;
+    border-radius: 50%;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(75, 40, 50, 0.22);
+
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.next-button:hover {
+    background: #76545C;
+    transform: translateX(5px);
+
+    box-shadow: 0 7px 20px rgba(75, 40, 50, 0.3);
+}
+
+.next-button:active {
+    transform: scale(0.92);
+}

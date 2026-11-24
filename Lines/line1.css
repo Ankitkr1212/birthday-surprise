@@ -1,0 +1,267 @@
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(
+            120deg,
+            #FCE4EC,
+            #F3C6D5,
+            #E9AFC2
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Main letter */
+.poem {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    place-items: center;
+
+    width: 1000px;
+    height: 500px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+            120deg,
+            #FFFEFA,
+            #FFF4E8,
+            #F5E6D8
+    );
+}
+
+/* Text animation */
+.text1 {
+    opacity: 0;
+    animation: textEnter 1.2s ease-out 0.2s forwards;
+}
+
+.text2 {
+    opacity: 0;
+    animation: textEnter 1.2s ease-out 0.8s forwards;
+}
+
+@keyframes textEnter {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Image animations */
+img {
+    width: 200px;
+    height: 250px;
+
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.image1 {
+    opacity: 0;
+
+    animation: imageEnter1 1.3s ease-out 0.5s forwards;
+}
+
+.image2 {
+    opacity: 0;
+
+    animation: imageEnter2 1.3s ease-out 1s forwards;
+}
+
+@keyframes imageEnter1 {
+    from {
+        opacity: 0;
+        transform: translateX(-200px) rotate(-5deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px) rotate(-5deg);
+    }
+}
+
+@keyframes imageEnter2 {
+    from {
+        opacity: 0;
+        transform: translateX(-200px) rotate(7deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px) rotate(7deg);
+    }
+}
+
+/* Flower container */
+.flower-container {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Individual flowers */
+.flower {
+    position: absolute;
+
+    font-size: 45px;
+
+    opacity: 0;
+    transform: scale(0);
+
+    animation: bloom 1.5s ease-out forwards;
+}
+
+/* Flower positions */
+.flower1 {
+    top: 10%;
+    left: 12%;
+    animation-delay: 0.3s;
+}
+
+.flower2 {
+    top: 15%;
+    right: 12%;
+    animation-delay: 0.7s;
+}
+
+.flower3 {
+    bottom: 12%;
+    left: 10%;
+    animation-delay: 1s;
+}
+
+.flower4 {
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 1.3s;
+}
+
+.flower5 {
+    top: 50%;
+    left: 3%;
+    animation-delay: 1.6s;
+}
+
+.flower6 {
+    top: 50%;
+    right: 3%;
+    animation-delay: 1.9s;
+}
+
+/* Blooming animation */
+@keyframes bloom {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-45deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.3) rotate(15deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Next button */
+.next-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: #e89ab8;
+    color: white;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    box-shadow: 0 5px 18px rgba(180, 90, 130, 0.25);
+
+    transition:
+            transform 0.3s ease,
+            background 0.3s ease,
+            box-shadow 0.3s ease;
+}
+
+.next-button:hover {
+    background: #d978a2;
+    transform: translateX(5px);
+    box-shadow: 0 8px 22px rgba(180, 90, 130, 0.35);
+}
+
+.slide-in.text1,
+.slide-in.text2 {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 25px;
+    line-height: 1.7;
+
+    color: #76545C;
+
+    margin: 0;
+}
+
+.slide-in.text1 p,
+.slide-in.text2 p {
+    margin: 0;
+    padding: 2px 0;
+}

@@ -1,0 +1,612 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    isolation: isolate;
+
+    background: #fff0dc;
+}
+
+/* Background for the inside of the card */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+
+    background:
+            radial-gradient(
+                    ellipse at top left,
+                    rgba(255,255,255,0.5),
+                    transparent 60%
+            ),
+            linear-gradient(
+                    135deg,
+                    #e8d6b5,
+                    #f2e3c6,
+                    #e8d6b5
+            );
+
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    pointer-events: none;
+}
+
+body.flipped::before {
+    background: linear-gradient(
+            135deg,
+            #d8c4e8,
+            #f2c6d3,
+            #c5b5df
+    );
+    opacity: 1;
+}
+.card-container {
+    position: relative;
+    z-index: 2;
+}
+
+.flower-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Main card container */
+.card-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    perspective: 1200px;
+}
+
+/* Both sides share these exact dimensions */
+.birthday-card {
+    position: relative;
+
+    width: min(100%, 1000px);
+    height: min(550px, 75vh);
+    min-height: 350px;
+
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Common styling for both sides */
+.card-front,
+.card-inside {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transition: transform 1s ease;
+}
+
+/* Front of the card */
+.card-front {
+    background: #e8d6b5;
+    padding: 12px;
+
+    transform: rotateY(0deg);
+}
+
+/* Inside of the card */
+.card-inside {
+    position: absolute;
+    background: #fff0f3;
+
+    transform: rotateY(180deg);
+    overflow: hidden;
+}
+
+/* Flip animation */
+.birthday-card.open .card-front {
+    transform: rotateY(-180deg);
+}
+
+.birthday-card.open .card-inside {
+    transform: rotateY(0deg);
+}
+
+/* LETTER PAPER */
+.letter-paper {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 25px 30px;
+
+    background: linear-gradient(
+            135deg,
+            #fff8e9,
+            #f2e3c6
+    );
+
+    border: 1px solid #d4bd95;
+
+    box-shadow: inset 0 0 25px rgba(120, 80, 40, 0.12);
+
+    color: #624b38;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+/* Letter date */
+.letter-date {
+    width: 100%;
+    text-align: right;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: #927b5c;
+}
+
+/* Letter heading */
+.letter-heading {
+    text-align: center;
+    margin-top: 15px;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: #a17c55;
+}
+
+/* Greeting */
+.letter-paper h2 {
+    margin-top: 25px;
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+}
+
+/* Letter content */
+.letter-content {
+    margin-top: 15px;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    line-height: 1.8;
+    font-style: italic;
+}
+
+/* Signature */
+.letter-signature {
+    margin-top: auto;
+    margin-bottom: 30px;
+
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.letter-signature span {
+    display: block;
+    margin-top: 5px;
+
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+}
+
+/* Wax seal */
+.wax-seal {
+    position: absolute;
+    bottom: 55px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+    background: #a83245;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 23px;
+
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Click instruction */
+.click-hint {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+
+    width: 100%;
+    text-align: center;
+
+    font-size: 11px;
+    font-style: italic;
+    color: #a18b6c;
+}
+
+/* INSIDE MESSAGE */
+.card-inside h2 {
+    position: relative;
+    z-index: 2;
+
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: #a83265;
+}
+
+.card-inside p {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 15px;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: #765064;
+    text-align: center;
+}
+
+/* Decorative flowers around the inside message */
+.card-inside::before,
+.card-inside::after {
+    content: "✿";
+    position: absolute;
+
+    font-size: 100px;
+    color: #f3a6bd;
+
+    opacity: 0;
+    transform: scale(0.2) rotate(-45deg);
+
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.card-inside::before {
+    top: 35px;
+    left: 70px;
+}
+
+.card-inside::after {
+    bottom: 35px;
+    right: 70px;
+}
+
+.birthday-card.open .card-inside::before,
+.birthday-card.open .card-inside::after {
+    opacity: 0.65;
+    transform: scale(1) rotate(0deg);
+}
+
+/* FLOWER ANIMATION */
+.flower-bloom {
+    position: relative;
+    z-index: 2;
+
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.3);
+}
+
+.flower-bloom.bloom {
+    visibility: visible;
+    animation: flowerAppear 0.8s ease-out forwards;
+}
+
+.petal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 25px;
+    height: 38px;
+
+    margin-left: -12.5px;
+    margin-top: -19px;
+
+    border-radius: 50% 50% 45% 45%;
+
+    background: linear-gradient(
+            135deg,
+            #ffb6cb,
+            #e879a5
+    );
+
+    transform: rotate(var(--angle)) translateY(-23px) scale(0);
+    transform-origin: center;
+}
+
+.flower-bloom.bloom .petal {
+    animation: petalOpen 0.7s ease-out forwards;
+}
+
+.flower-bloom.bloom .petal:nth-child(2) { animation-delay: 0.08s; }
+.flower-bloom.bloom .petal:nth-child(3) { animation-delay: 0.16s; }
+.flower-bloom.bloom .petal:nth-child(4) { animation-delay: 0.24s; }
+.flower-bloom.bloom .petal:nth-child(5) { animation-delay: 0.32s; }
+.flower-bloom.bloom .petal:nth-child(6) { animation-delay: 0.40s; }
+.flower-bloom.bloom .petal:nth-child(7) { animation-delay: 0.48s; }
+.flower-bloom.bloom .petal:nth-child(8) { animation-delay: 0.56s; }
+
+.flower-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 22px;
+    height: 22px;
+
+    background: #ffd66b;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.flower-bloom.bloom .flower-center {
+    animation: centerAppear 0.5s ease-out 0.7s forwards;
+}
+
+@keyframes flowerAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes petalOpen {
+    from {
+        transform: rotate(var(--angle)) translateY(-23px) scale(0);
+    }
+
+    to {
+        transform: rotate(var(--angle)) translateY(-23px) scale(1);
+    }
+}
+
+@keyframes centerAppear {
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ARROW BUTTON */
+.arrow-shape {
+    position: relative;
+    z-index: 3;
+
+    width: 100px;
+    height: 50px;
+
+    margin-top: 25px;
+
+    border: none;
+    background: #E8A2B5;
+    color: white;
+
+    font-size: 30px;
+    cursor: pointer;
+
+    clip-path: polygon(
+            0 0,
+            70% 0,
+            100% 50%,
+            70% 100%,
+            0 100%
+    );
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+            opacity 2s ease,
+            transform 2s ease,
+            visibility 2s;
+}
+
+/* Button fades into view */
+.arrow-shape.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.arrow-shape:hover {
+    background: #D47796;
+    transform: translateX(8px);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 600px) {
+    .card-container {
+        padding: 12px;
+    }
+
+    .birthday-card {
+        height: 70vh;
+        min-height: 400px;
+    }
+
+    .letter-paper {
+        padding: 15px;
+    }
+
+    .letter-content {
+        font-size: 13px;
+    }
+
+    .letter-paper h2 {
+        font-size: 27px;
+    }
+
+    .card-inside h2 {
+        font-size: 36px;
+    }
+
+    .card-inside p {
+        font-size: 16px;
+        padding: 0 15px;
+    }
+
+    .card-inside::before {
+        top: 20px;
+        left: 15px;
+        font-size: 65px;
+    }
+
+    .card-inside::after {
+        bottom: 20px;
+        right: 15px;
+        font-size: 65px;
+    }
+}
+
+/* Background flowers */
+
+.flower {
+    position: absolute;
+
+    font-size: 35px;
+    opacity: 0;
+
+    transform: scale(0) rotate(-35deg);
+}
+
+/* Flower positions */
+
+.flower1 {
+    top: 5%;
+    left: 4%;
+}
+
+.flower2 {
+    top: 12%;
+    right: 4%;
+}
+
+.flower3 {
+    bottom: 8%;
+    left: 5%;
+}
+
+.flower4 {
+    bottom: 10%;
+    right: 5%;
+}
+
+.flower5 {
+    top: 45%;
+    left: 2%;
+}
+
+.flower6 {
+    top: 45%;
+    right: 2%;
+}
+
+.flower7 {
+    top: 25%;
+    left: 8%;
+}
+
+.flower8 {
+    bottom: 25%;
+    right: 8%;
+}
+
+/* Blooming animation */
+
+.flower.bloom {
+    animation: backgroundBloom 1.8s ease-out forwards;
+}
+
+@keyframes backgroundBloom {
+
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-35deg);
+    }
+
+    65% {
+        opacity: 0.9;
+        transform: scale(1.2) rotate(12deg);
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .flower {
+        font-size: 23px;
+    }
+
+    .flower5,
+    .flower6,
+    .flower7,
+    .flower8 {
+        display: none;
+    }
+
+}
+
+h2 {
+    text-align: left;
+}
+
+.letter-content {
+    text-align: left;
+}
