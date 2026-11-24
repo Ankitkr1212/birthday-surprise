@@ -1,0 +1,300 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(
+            120deg,
+            #E5F4F8,
+            #C5E3EC,
+            #A9D3E0
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Letter grid */
+.poem4 {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    place-items: center;
+
+    width: 1000px;
+    height: 500px;
+
+    background: linear-gradient(
+            120deg,
+            #FFFFFF,
+            #F0F8FA,
+            #DFEDF1
+    );
+
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(57, 127, 148, 0.15);
+}
+
+/* Headings */
+.poem4 h1 {
+    color: #24596B;
+    font-size: 32px;
+    text-align: center;
+    opacity: 0;
+    animation: textEnter 1s ease forwards;
+}
+
+/* Text animation */
+.text1 {
+    opacity: 0;
+    animation: textEnter 1.2s ease-out 0.2s forwards;
+}
+
+.text2 {
+    opacity: 0;
+    animation: textEnter 1.2s ease-out 0.8s forwards;
+}
+
+@keyframes textEnter {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}/* First image */
+.img7 {
+    width: 200px;
+    height: 250px;
+
+    object-fit: cover;
+    border-radius: 10px;
+
+    opacity: 0;
+
+    animation: slideImage1 1.2s ease forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes slideImage1 {
+    from {
+        opacity: 0;
+        transform: translateX(-200px) rotate(-5deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(-5deg);
+    }
+}
+/* Second image */
+.img8 {
+    width: 200px;
+    height: 250px;
+
+    object-fit: cover;
+    border-radius: 10px;
+
+    opacity: 0;
+
+    animation: slideImage2 1.2s ease forwards;
+    animation-delay: 1.4s;
+}
+
+@keyframes slideImage2 {
+    from {
+        opacity: 0;
+        transform: translateX(-200px) rotate(5deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(50px) rotate(5deg);
+    }
+}
+
+/* Flowers around the letter */
+.flower-container {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+.flower {
+    position: absolute;
+    font-size: 35px;
+
+    opacity: 0;
+    transform: scale(0);
+
+    animation: bloom 1.5s ease-out forwards;
+}
+
+.flower1 {
+    top: 10%;
+    left: 12%;
+    animation-delay: 0.3s;
+}
+
+.flower2 {
+    top: 15%;
+    right: 12%;
+    animation-delay: 0.7s;
+}
+
+.flower3 {
+    bottom: 12%;
+    left: 10%;
+    animation-delay: 1s;
+}
+
+.flower4 {
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 1.3s;
+}
+
+.flower5 {
+    top: 50%;
+    left: 3%;
+    animation-delay: 1.6s;
+}
+
+.flower6 {
+    top: 50%;
+    right: 3%;
+    animation-delay: 1.9s;
+}
+
+@keyframes bloom {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-45deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.3) rotate(15deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Back button */
+.back-button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    border: 2px solid #A9D3E0;
+    border-radius: 50%;
+
+    background: #397F94;
+    color: #FFFFFF;
+
+    font-size: 30px;
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(57, 127, 148, 0.20);
+
+    transition: 0.3s ease;
+}
+
+.back-button:hover {
+    background: #24596B;
+    border-color: #24596B;
+    transform: translateX(-5px);
+}
+
+/* Next button */
+.next-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    border: 2px solid #A9D3E0;
+    border-radius: 50%;
+
+    background: #397F94;
+    color: #FFFFFF;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(57, 127, 148, 0.25);
+
+    transition:
+            transform 0.3s ease,
+            background 0.3s ease,
+            box-shadow 0.3s ease;
+}
+
+.next-button:hover {
+    background: #24596B;
+    border-color: #24596B;
+    transform: translateX(5px);
+    box-shadow: 0 8px 22px rgba(36, 89, 107, 0.35);
+}
+
+.slide-in.text1{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 25px;
+    line-height: 1.7;
+
+    color: #76545C;
+
+    margin: 0;
+}
+
+.slide-in.text1 p{
+    margin: 0;
+    padding: 2px 0;
+}
+
